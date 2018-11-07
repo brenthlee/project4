@@ -67,6 +67,7 @@ public class ChangeMaker {
             if (d[i] <= n) {
                 n -= d[i];
                 A[i]++;
+                count++;
             }
         }
         return A;
@@ -88,12 +89,7 @@ public class ChangeMaker {
     private static void print(int n, boolean flag, int[] arr, int[] d) {
         System.out.println("Amount: " + n);
         System.out.print("Optimal distribution: ");
-        for (int i = 0; i < arr.length; i++) {
-            count += arr[i];
-            System.out.print(arr[i] + " ");
-        }
-        System.out.println("");
-        //printRes(flag, arr, d, 0);
-        System.out.println("Optimal coin count: " + count + "\n");
+        printRes(flag, arr, d, 0);
+        System.out.println("\nOptimal coin count: " + count + "\n");
     }
 }
