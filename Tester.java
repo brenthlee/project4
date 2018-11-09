@@ -33,7 +33,7 @@ public class Tester {
                 sum++;
             }
         }
-        System.out.println("Testing set1: x" + sum + " matches in 200 tests");
+        System.out.println("Testing set1: " + sum + " matches in 200 tests");
         sum = 0;
         ccDP = 0;
         ccGreedy = 0;
@@ -48,7 +48,7 @@ public class Tester {
                 sum++;
             }
         }
-        System.out.println("Testing set2: x" + sum + " matches in 200 tests");
+        System.out.println("Testing set2: " + sum + " matches in 200 tests");
         sum = 0;
         ccDP = 0;
         ccGreedy = 0;
@@ -63,7 +63,7 @@ public class Tester {
                 sum++;
             }
         }
-        System.out.println("Testing set3: x" + sum + " matches in 200 tests");
+        System.out.println("Testing set3: " + sum + " matches in 200 tests");
         sum = 0;
         ccDP = 0;
         ccGreedy = 0;
@@ -78,7 +78,8 @@ public class Tester {
                 sum++;
             }
         }
-        System.out.println("Testing set4: x" + sum + " matches in 200 tests");
+        //should be about 130 matches and 72 matches
+        System.out.println("Testing set4: " + sum + " matches in 200 tests");
         sum = 0;
         ccDP = 0;
         ccGreedy = 0;
@@ -93,7 +94,7 @@ public class Tester {
                 sum++;
             }
         }
-        System.out.println("Testing set5: x" + sum + " matches in 200 tests\n");
+        System.out.println("Testing set5: " + sum + " matches in 200 tests\n");
         
     }
 }
