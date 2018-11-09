@@ -26,14 +26,17 @@ public class ChangeMaker {
         }
         int n;
         do {
-            System.out.println("Enter a positive amount to be change (enter 0 to quit):");
+            System.out.println("\nEnter a positive amount to be change (enter 0 to quit):");
             n = scanner.nextInt();
             if (n > 0) {
                 count = 0;
                 int[] saved = change_DP(n, denominations);
                 boolean flag = false;
-                //System.out.println("DP algorithm results");
-                //print(n, flag, saved, denominations);
+                //for (int i = 0; i < saved.length; i++) {
+                //    System.out.print(saved[i] + " ");
+                //}
+                System.out.println("\nDP algorithm results");
+                print(n, flag, saved, denominations);
                 count = 0;
                 int[] greedy = change_greedy(n, denominations);
                 flag = false;
@@ -41,20 +44,46 @@ public class ChangeMaker {
                 print(n, flag, greedy, denominations);
             }
         } while (n > 0);
-        System.out.println("Thanks for playing. Good Bye");
+        System.out.println("\nThanks for playing. Good Bye\n");
     }
 
     public static int[] change_DP(int n, int[] d) {
-        //int A[] = new int[d.length]; // aux array to hold min values used
-        //int C[] = new int[d.length]; // computed values
-        int dp[] = new int[n+1];
-        dp[0] = 1;
-        for (int i = 0; i < d.length; i++) {
-            for (int j = d[i]; j <= n; j++) {
-                dp[j] += dp[j - d[i]];
+        int[] A = new int[n+1]; // aux array to hold min values used
+        int[] C = new int[n+1]; // computed values
+        C[0] = 0;
+        A[0] = 1;
+        for (int j = 1; j <= n; j++) {
+            int minCoins = j;
+            int newCoin = 1;
+            for (int i = 0; i < d.length; i++) {
+                if (d[i] > j) {
+                    continue;
+                }
+                if (C[j - d[i]] + 1 < minCoins) {
+                    minCoins = C[j - d[i]] + 1;
+                    newCoin = d[i];
+                }
             }
+            C[j] = minCoins;
+            A[j] = newCoin;
         }
-        return dp;
+        count = C[n];
+        int[] B = getAnsDP(A, C, n, d);
+        return B;
+    }
+
+    private static int[] getAnsDP(int[] A, int[] C, int n, int[] d) {
+        int[] tmp = new int[d[0]+1];
+        int index = 0;
+        for (int s : d) {
+            tmp[s] = index++;
+        }
+        int[] B = new int[d.length];
+        while (n > 0) {
+            B[tmp[A[n]]]++;
+            n -= A[n];
+        }
+        return B;
     }
 
     public static int[] change_greedy(int n, int[] d) {
@@ -90,6 +119,6 @@ public class ChangeMaker {
         System.out.println("Amount: " + n);
         System.out.print("Optimal distribution: ");
         printRes(flag, arr, d, 0);
-        System.out.println("\nOptimal coin count: " + count + "\n");
+        System.out.println("\nOptimal coin count: " + count);
     }
 }

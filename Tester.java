@@ -5,9 +5,95 @@
  * Project 4
  */
 
+import java.util.*;
+
 public class Tester {
 
     public static void main(String[] args) {
+        Map<String, int[]> map = new HashMap<>();
+        int[] US = {100, 50, 25, 10, 5, 1};
+        int[] Soviet = {100, 50, 20, 15, 10, 5, 3, 2, 1};
+        int[] powers = {64, 32, 16, 8, 4, 2, 1};
+        int[] USnonickel = {100, 50, 25, 10, 1};
+        int[] random = {66, 35, 27, 18, 10, 1};
+        int sum = 0; //totals matched between the 2 algorithms
+        int ccDP = 0; //coin count for dynamic programming
+        int ccGreedy = 0; //coin count for greedy algorithm
+        int[] dp = new int[0];
+        int[] greedy = new int[0];
+        System.out.println("Testing change_DP and change_greedy algorithms");
+        for (int n = 1; n <= 200; n++) {
+            dp = ChangeMaker.change_DP(n, US);
+            greedy = ChangeMaker.change_greedy(n, US);
+            for (int i = 0; i < greedy.length; i++) {
+                ccGreedy += greedy[i];
+                ccDP += dp[i];
+            }
+            if (ccGreedy == ccDP) {
+                sum++;
+            }
+        }
+        System.out.println("Testing set1: x" + sum + " matches in 200 tests");
+        sum = 0;
+        ccDP = 0;
+        ccGreedy = 0;
+        for (int n = 1; n <= 200; n++) {
+            dp = ChangeMaker.change_DP(n, Soviet);
+            greedy = ChangeMaker.change_greedy(n, Soviet);
+            for (int i = 0; i < greedy.length; i++) {
+                ccGreedy += greedy[i];
+                ccDP += dp[i];
+            }
+            if (ccGreedy == ccDP) {
+                sum++;
+            }
+        }
+        System.out.println("Testing set2: x" + sum + " matches in 200 tests");
+        sum = 0;
+        ccDP = 0;
+        ccGreedy = 0;
+        for (int n = 1; n <= 200; n++) {
+            dp = ChangeMaker.change_DP(n, powers);
+            greedy = ChangeMaker.change_greedy(n, powers);
+            for (int i = 0; i < greedy.length; i++) {
+                ccGreedy += greedy[i];
+                ccDP += dp[i];
+            }
+            if (ccGreedy == ccDP) {
+                sum++;
+            }
+        }
+        System.out.println("Testing set3: x" + sum + " matches in 200 tests");
+        sum = 0;
+        ccDP = 0;
+        ccGreedy = 0;
+        for (int n = 1; n <= 200; n++) {
+            dp = ChangeMaker.change_DP(n, USnonickel);
+            greedy = ChangeMaker.change_greedy(n, USnonickel);
+            for (int i = 0; i < greedy.length; i++) {
+                ccGreedy += greedy[i];
+                ccDP += dp[i];
+            }
+            if (ccGreedy == ccDP) {
+                sum++;
+            }
+        }
+        System.out.println("Testing set4: x" + sum + " matches in 200 tests");
+        sum = 0;
+        ccDP = 0;
+        ccGreedy = 0;
+        for (int n = 1; n <= 200; n++) {
+            dp = ChangeMaker.change_DP(n, random);
+            greedy = ChangeMaker.change_greedy(n, random);
+            for (int i = 0; i < greedy.length; i++) {
+                ccGreedy += greedy[i];
+                ccDP += dp[i];
+            }
+            if (ccGreedy == ccDP) {
+                sum++;
+            }
+        }
+        System.out.println("Testing set5: x" + sum + " matches in 200 tests\n");
         
     }
 }
