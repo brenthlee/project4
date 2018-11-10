@@ -26,17 +26,16 @@ public class ChangeMaker {
         }
         int n;
         do {
-            System.out.println("\nEnter a positive amount to be change (enter 0 to quit):");
-            n = scanner.nextInt();
+            do {
+                System.out.println("\nEnter a positive amount to be changed (enter 0 to quit):");
+                n = scanner.nextInt();
+            } while (n < 0);
             if (n > 0) {
                 count = 0;
-                int[] saved = change_DP(n, denominations);
+                int[] dp = change_DP(n, denominations);
                 boolean flag = false;
-                //for (int i = 0; i < saved.length; i++) {
-                //    System.out.print(saved[i] + " ");
-                //}
                 System.out.println("\nDP algorithm results");
-                print(n, flag, saved, denominations);
+                print(n, flag, dp, denominations);
                 count = 0;
                 int[] greedy = change_greedy(n, denominations);
                 flag = false;
