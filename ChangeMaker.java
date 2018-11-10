@@ -26,10 +26,8 @@ public class ChangeMaker {
         }
         int n;
         do {
-            do {
-                System.out.println("\nEnter a positive amount to be changed (enter 0 to quit):");
-                n = scanner.nextInt();
-            } while (n < 0);
+            System.out.println("\nEnter a positive amount to be changed (enter 0 to quit):");
+            n = scanner.nextInt();
             if (n > 0) {
                 count = 0;
                 int[] dp = change_DP(n, denominations);
